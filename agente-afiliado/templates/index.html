@@ -1,70 +1,80 @@
-Descubra o Seu Perfil  
-  
-body {  
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
-background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);  
-margin: 0;  
-padding: 0;  
-display: flex;  
-justify-content: center;  
-align-items: center;  
-min-height: 100vh;  
-}  
-.container {  
-background-color: white;  
-border-radius: 16px;  
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);  
-padding: 40px;  
-max-width: 500px;  
-width: 90%;  
-text-align: center;  
-}  
-h1 {  
-color: #333;  
-margin-bottom: 10px;  
-font-size: 28px;  
-}  
-p {  
-color: #666;  
-margin-bottom: 30px;  
-font-size: 16px;  
-line-height: 1.5;  
-}  
-.btn-group {  
-display: flex;  
-flex-direction: column;  
-gap: 15px;  
-}  
-.btn {  
-display: block;  
-padding: 16px;  
-border-radius: 8px;  
-text-decoration: none;  
-font-weight: bold;  
-font-size: 18px;  
-transition: transform 0.2s, box-shadow 0.2s;  
-cursor: pointer;  
-}  
-.btn:hover {  
-transform: translateY(-2px);  
-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);  
-}  
-.btn-renda {  
-background-color: #2ecc71;  
-color: white;  
-}  
-.btn-saude {  
-background-color: #3498db;  
-color: white;  
-}  
-  
-  
- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra o Seu Perfil</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .btn {
+            display: block;
+            padding: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        .btn-renda {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .btn-saude {
+            background-color: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
 
-  
-Bem-vindo!  
-Escolha uma das categorias abaixo para iniciar o seu teste personalizado e descobrir o melhor caminho para você. 
+<div class="container">
+    <h1>Bem-vindo!</h1>
+    <p>Escolha uma das categorias abaixo para iniciar o seu teste personalizado e descobrir o melhor caminho para você.</p>
+    
+    <div class="btn-group">
+        <a href="/quiz/renda_extra" class="btn btn-renda">💰 Renda Extra & Marketing</a>
+        <a href="/quiz/saude" class="btn btn-saude">🌱 Saúde & Bem-Estar</a>
+    </div>
+</div>
 
-  
-💰 Renda Extra & Marketing  
-🌱 Saúde & Bem-Estar
+</body>
+</html>
