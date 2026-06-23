@@ -1,113 +1,118 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import sqlite3
 
 app = Flask(__name__)
-app.secret_key = 'super_secret_key'
+app.secret_key = 'chave_secreta_para_sessoes'
 
-DATABASE = 'database.db'
-
-# ============================================
-# SEUS LINKS DE AFILIADO — TROQUE AQUI
-# ============================================
-AFFILIATE_LINKS = {
-     'A': 'https://go.hotmart.com/S106430936D?ap=1c6a',
-    'B': 'https://go.hotmart.com/S106430936D?ap=1c6a',
-    'C': 'https://go.hotmart.com/S106430936D?ap=1c6a'
-
-
+# Estrutura de Quizzes por Categoria
+QUIZZES = {
+    'renda_extra': [
+        {
+            'id': 1,
+            'texto': 'Quanto tempo por dia você tem livre para começar a faturar na internet?',
+            'opcoes': {
+                'A': 'Menos de 1 hora (quero algo rápido)',
+                'B': 'De 1 a 3 horas (consigo me dedicar)',
+                'C': 'Mais de 3 horas (quero focar 100%)'
+            }
+        },
+        {
+            'id': 2,
+            'texto': 'Qual é a sua experiência atual com marketing digital?',
+            'opcoes': {
+                'A': 'Zero, sou totalmente iniciante',
+                'B': 'Conheço um pouco, mas sem resultados',
+                'C': 'Já tenho experiência, mas quero escalar'
+            }
+        }
+    ],
+    'saude': [
+        {
+            'id': 1,
+            'texto': 'Qual é o seu principal objetivo de saúde atualmente?',
+            'opcoes': {
+                'A': 'Perder peso rapidamente',
+                'B': 'Ganhar massa muscular',
+                'C': 'Ter mais energia e disposição no dia a dia'
+            }
+        },
+        {
+            'id': 2,
+            'texto': 'Como é a sua rotina de exercícios atual?',
+            'opcoes': {
+                'A': 'Não pratico nenhum exercício (sedentário)',
+                'B': 'Pratico de 1 a 2 vezes por semana',
+                'C': 'Pratico 3 ou mais vezes por semana'
+            }
+        }
+    ]
 }
 
-def get_db_connection():
-    conn = sqlite3.connect(DATABASE)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-def init_db():
-    with app.app_context():
-        conn = get_db_connection()
-        conn.execute('''
-            CREATE TABLE IF NOT EXISTS leads (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                email TEXT NOT NULL,
-                profile_result TEXT NOT NULL,
-                date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        ''')
-        conn.commit()
-        conn.close()
-
-with app.app_context():
-    init_db()
+# Links de Afiliados separados por Categoria
+AFFILIATE_LINKS = {
+    'renda_extra': {
+        'A': 'https://hotmart.com',
+        'B': 'https://hotmart.com',
+        'C': 'https://hotmart.com'
+    },
+    'saude': {
+        'A': 'https://LINK_DE_EMAGRECIMENTO_A',
+        'B': 'https://LINK_DE_EMAGRECIMENTO_B',
+        'C': 'https://LINK_DE_EMAGRECIMENTO_C'
+    }
+}
 
 @app.route('/')
 def index():
+    # Página inicial onde o usuário escolhe a categoria
     return render_template('index.html')
 
-from quiz_flow import quiz_questions, profiles
-
-@app.route('/quiz', methods=['GET', 'POST'])
-def quiz():
-    if 'quiz_progress' not in session:
-        session['quiz_progress'] = 0
-        session['profile_weights'] = {'A': 0, 'B': 0, 'C': 0}
-
-    if request.method == 'POST':
-        selected_option_index = int(request.form['answer'])
-        current_question_index = session['quiz_progress']
-        selected_option = quiz_questions[current_question_index]['options'][selected_option_index]
-
-        for profile_key, weight in selected_option['weight'].items():
-            session['profile_weights'][profile_key] += weight
-
-        session['quiz_progress'] += 1
-
-        if session['quiz_progress'] >= len(quiz_questions):
-            max_weight = -1
-            result_profile_key = None
-            for key, weight in session['profile_weights'].items():
-                if weight > max_weight:
-                    max_weight = weight
-                    result_profile_key = key
-                elif weight == max_weight and result_profile_key is not None:
-                    if key == 'A' and result_profile_key != 'A':
-                        result_profile_key = 'A'
-                    elif key == 'B' and result_profile_key == 'C':
-                        result_profile_key = 'B'
-            session['result_profile_key'] = result_profile_key
-            return redirect(url_for('resultado'))
-        else:
-            return redirect(url_for('quiz'))
-
-    current_question_index = session['quiz_progress']
-    question = quiz_questions[current_question_index]
-    return render_template('quiz.html', question=question, question_num=current_question_index + 1, total_questions=len(quiz_questions))
-
-@app.route('/resultado', methods=['GET', 'POST'])
-def resultado():
-    if 'result_profile_key' not in session:
+@app.route('/quiz/<categoria>')
+def iniciar_quiz(categoria):
+    if categoria not in QUIZZES:
         return redirect(url_for('index'))
+    
+    session['categoria'] = categoria
+    session['respostas'] = []
+    return redirect(url_for('mostrar_pergunta', pergunta_id=1))
 
-    profile_key = session['result_profile_key']
-    profile = profiles[profile_key]
-
+@app.route('/pergunta/<int:pergunta_id>', methods=['GET', 'POST'])
+def mostrar_pergunta(pergunta_id):
+    categoria = session.get('categoria')
+    if not categoria or categoria not in QUIZZES:
+        return redirect(url_for('index'))
+    
+    perguntas = QUIZZES[categoria]
+    
+    if pergunta_id > len(perguntas):
+        return redirect(url_for('mostrar_resultado'))
+        
+    pergunta_atual = perguntas[pergunta_id - 1]
+    
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        profile_result = request.form['profile_result']
+        resposta = request.form.get('resposta')
+        if resposta:
+            respostas = session.get('respostas', [])
+            respostas.append(resposta)
+            session['respostas'] = respuestas
+            return redirect(url_for('mostrar_pergunta', pergunta_id=pergunta_id + 1))
+            
+    return render_template('quiz.html', pergunta=pergunta_atual, total=len(perguntas), atual=pergunta_id)
 
-        # Salva o lead no banco
-        conn = get_db_connection()
-        conn.execute('INSERT INTO leads (name, email, profile_result) VALUES (?, ?, ?)',
-                     (name, email, profile_result))
-        conn.commit()
-        conn.close()
-
-        # Redireciona para o link de afiliado do perfil
-        affiliate_url = AFFILIATE_LINKS.get(profile_key, 'https://google.com')
-        return redirect(affiliate_url)
-
-    return render_template('resultado.html', profile=profile, profile_key=profile_key, offer_submitted=False)
+@app.route('/resultado')
+def mostrar_resultado():
+    categoria = session.get('categoria')
+    respostas = session.get('respostas', [])
+    
+    if not categoria or not respostas:
+        return redirect(url_for('index'))
+        
+    # Lógica simples para definir o perfil com base nas respostas (ex: mais comum)
+    perfil = max(set(respostas), key=respostas.count) if respostas else 'A'
+    
+    # Busca o link correto com base na categoria escolhida e no perfil final
+    link_final = AFFILIATE_LINKS.get(categoria, {}).get(perfil, '#')
+    
+    return render_template('resultado.html', perfil=perfil, link_checkout=link_final, categoria=categoria)
 
 if __name__ == '__main__':
     app.run(debug=True)
