@@ -66,15 +66,14 @@
         <h2>{{ pergunta.texto }}</h2>
 
         <div class="options-form">
-            {% for letra, texto_opcao in pergunta.opcoes.items() %}
-            <form action="/responder" method="POST">
-                <input type="hidden" name="pergunta_id" value="{{ atual }}">
-                <input type="hidden" name="resposta" value="{{ letra }}">
-                <button class="option-btn" type="submit">
-                    <strong>{{ letra }}</strong> — {{ texto_opcao }}
-                </button>
-            </form>
-            {% endfor %}
+<form action="/pergunta/{{ atual }}" method="POST">
+{% for letra, texto_opcao in pergunta.opcoes.items() %}
+    <input type="hidden" name="resposta_{{ letra }}" value="{{ letra }}">
+    <button class="option-btn" type="submit" name="resposta" value="{{ letra }}">
+        <strong>{{ letra }}</strong> — {{ texto_opcao }}
+    </button>
+{% endfor %}
+</form>
         </div>
     </div>
 </body>
