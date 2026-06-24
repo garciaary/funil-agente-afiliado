@@ -1,69 +1,81 @@
-Quiz Personalizado  
-  
-body {  
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
-background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);  
-margin: 0;  
-padding: 0;  
-display: flex;  
-justify-content: center;  
-align-items: center;  
-min-height: 100vh;  
-}  
-.container {  
-background-color: white;  
-border-radius: 16px;  
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);  
-padding: 40px;  
-max-width: 500px;  
-width: 90%;  
-}  
-.progress {  
-color: #888;  
-font-size: 14px;  
-margin-bottom: 10px;  
-text-align: right;  
-}  
-h2 {  
-color: #333;  
-margin-bottom: 25px;  
-font-size: 22px;  
-line-height: 1.4;  
-}  
-.options-form {  
-display: flex;  
-flex-direction: column;  
-gap: 15px;  
-}  
-.option-btn {  
-background-color: #f8f9fa;  
-border: 2px solid #e9ecef;  
-border-radius: 8px;  
-padding: 16px;  
-text-align: left;  
-font-size: 16px;  
-color: #495057;  
-cursor: pointer;  
-transition: all 0.2s;  
-width: 100%;  
-}  
-.option-btn:hover {  
-background-color: #e8f4fd;  
-border-color: #3498db;  
-color: #0056b3;  
-transform: translateX(4px);  
-}  
-  
-  
- 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Personalizado</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+        }
+        .progress {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 22px;
+            line-height: 1.4;
+        }
+        .options-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .option-btn {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: left;
+            font-size: 16px;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .option-btn:hover {
+            background-color: #e8f4fd;
+            border-color: #3498db;
+            color: #0056b3;
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress">Pergunta {{ atual }} de {{ total }}</div>
+        <h2>{{ pergunta.texto }}</h2>
 
-  
-Pergunta {{ atual }} de {{ total }}  
-{{ pergunta.texto }} 
-
-  
-{% for letra, texto\_opcao in pergunta.opcoes.items() %}  
-  
-**{{ letra }})** {{ texto\_opcao }}  
-  
-{% endfor %}
+        <div class="options-form">
+            {% for letra, texto_opcao in pergunta.opcoes.items() %}
+            <form action="/responder" method="POST">
+                <input type="hidden" name="pergunta_id" value="{{ atual }}">
+                <input type="hidden" name="resposta" value="{{ letra }}">
+                <button class="option-btn" type="submit">
+                    <strong>{{ letra }}</strong> — {{ texto_opcao }}
+                </button>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
