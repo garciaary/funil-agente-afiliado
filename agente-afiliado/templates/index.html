@@ -1,80 +1,204 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descubra o Seu Perfil</title>
+    <title>Funil Agente Afiliado</title>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-        }
-        .container {
-            background-color: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        p {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        .btn-group {
             display: flex;
             flex-direction: column;
-            gap: 15px;
         }
-        .btn {
-            display: block;
-            padding: 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
+
+        /* HEADER */
+        header {
+            background-color: #2c3e50;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        }
-        .btn-renda {
-            background-color: #2ecc71;
+        header h1 {
             color: white;
+            font-size: 22px;
+            letter-spacing: 1px;
         }
-        .btn-saude {
+        header span {
+            color: #3498db;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+        .hero h2 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .hero p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        /* BENEFÍCIOS */
+        .benefits {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        .benefit-item {
+            background: white;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 14px;
+            color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .benefit-item span {
+            font-size: 18px;
+        }
+
+        /* PROVA SOCIAL */
+        .social-proof {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+        .social-proof strong {
+            color: #3498db;
+        }
+
+        /* CARDS */
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            padding: 0 20px 50px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            padding: 32px 28px;
+            max-width: 280px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        .card h3 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .card a {
+            display: block;
             background-color: #3498db;
             color: white;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .card a:hover {
+            background-color: #2980b9;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background-color: #2c3e50;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            margin-top: auto;
+        }
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Bem-vindo!</h1>
-    <p>Escolha uma das categorias abaixo para iniciar o seu teste personalizado e descobrir o melhor caminho para você.</p>
-    
-    <div class="btn-group">
-        <a href="/quiz/renda_extra" class="btn btn-renda">💰 Renda Extra & Marketing</a>
-        <a href="/quiz/saude" class="btn btn-saude">🌱 Saúde & Bem-Estar</a>
+    <!-- HEADER -->
+    <header>
+        <h1>Agente <span>Afiliado</span> Pro</h1>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h2>Descubra qual produto é perfeito para você 🎯</h2>
+        <p>Responda algumas perguntas rápidas e receba uma recomendação personalizada.</p>
     </div>
-</div>
+
+    <!-- BENEFÍCIOS -->
+    <div class="benefits">
+        <div class="benefit-item"><span>⚡</span> Leva menos de 2 minutos</div>
+        <div class="benefit-item"><span>🎁</span> Resultado personalizado</div>
+        <div class="benefit-item"><span>🔓</span> Acesso gratuito</div>
+        <div class="benefit-item"><span>📋</span> Sem cadastro inicial</div>
+    </div>
+
+    <!-- PROVA SOCIAL -->
+    <div class="social-proof">
+        <strong>+ de 500 pessoas</strong> já descobriram seu perfil ideal
+    </div>
+
+    <!-- CARDS -->
+    <div class="cards">
+        <div class="card">
+            <div class="icon">💰</div>
+            <h3>Renda Extra & Marketing</h3>
+            <p>Descubra oportunidades de afiliados, IA e negócios online. Ideal para quem quer ganhar na internet.</p>
+            <a href="/quiz/renda_extra">Fazer o Quiz →</a>
+        </div>
+        <div class="card">
+            <div class="icon">💚</div>
+            <h3>Saúde & Bem-Estar</h3>
+            <p>Encontre produtos e soluções alinhadas ao seu perfil. Transforme sua saúde com o produto certo.</p>
+            <a href="/quiz/saude">Fazer o Quiz →</a>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>© 2026 Agente Afiliado Pro &nbsp;|&nbsp;
+        <a href="https://wa.me/SEU_NUMERO" target="_blank">WhatsApp</a>
+        <a href="https://instagram.com/SEU_PERFIL" target="_blank">Instagram</a>
+        </p>
+    </footer>
 
 </body>
 </html>
