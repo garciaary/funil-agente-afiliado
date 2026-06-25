@@ -1,128 +1,122 @@
-import os
-from flask import Flask, render_template, request, redirect, url_for, session
+import os  
+from flask import Flask, render\_template, request, redirect, url\_for, session 
 
-# Define os caminhos de template de forma segura
-base_dir = os.path.abspath(os.path.dirname(__file__))
-template_dir = os.path.join(base_dir, 'templates')
+### Define os caminhos de template de forma segura
 
-app = Flask(__name__, template_folder=template_dir)
-app.secret_key = 'chave_secreta_para_sessoes_seguras'
+base\_dir = os.path.abspath(os.path.dirname(**file**))  
+template\_dir = os.path.join(base\_dir, 'templates') 
 
-# Estrutura de Quizzes por Categoria
-QUIZZES = {
-    'renda_extra': [
-        {
-            'id': 1,
-            'texto': 'Quanto tempo por dia você tem livre para começar a faturar na internet?',
-            'opcoes': {
-                'A': 'Menos de 1 hora (quero algo rápido)',
-                'B': 'De 1 a 3 horas (consigo me dedicar)',
-                'C': 'Mais de 3 horas (quero focar 100%)'
-            }
-        },
-        {
-            'id': 2,
-            'texto': 'Qual é o seu maior objetivo trabalhando como Agente de Vendas?',
-            'opcoes': {
-                'A': 'Ter apenas uma renda extra para pagar as contas',
-                'B': 'Trabalhar de casa e largar o meu emprego atual',
-                'C': 'Construir um negócio digital altamente lucrativo'
-            }
-        },
-        {
-            'id': 3,
-            'texto': 'Qual é a sua experiência atual com marketing digital?',
-            'opcoes': {
-                'A': 'Zero, sou totalmente iniciante',
-                'B': 'Conheço um pouco, mas sem resultados',
-                'C': 'Já tenho experiência, mas quero escalar'
-            }
-        }
-    ],
-    'saude': [
-        {
-            'id': 1,
-            'texto': 'Qual é o seu principal objetivo de saúde atualmente?',
-            'opcoes': {
-                'A': 'Perder peso rapidamente',
-                'B': 'Ganhar massa muscular',
-                'C': 'Ter mais energia e disposição no dia a dia'
-            }
-        },
-        {
-            'id': 2,
-            'texto': 'Como é a sua rotina de exercícios atual?',
-            'opcoes': {
-                'A': 'Não pratico nenhum exercício (sedentário)',
-                'B': 'Pratico de 1 a 2 vezes por semana',
-                'C': 'Pratico 3 ou mais vezes por semana'
-            }
-        }
-    ]
-}
+app = Flask(**name**, template\_folder=template\_dir)  
+app.secret\_key = 'chave\_secreta\_para\_sessoes\_seguras' 
 
-# Links de comissão configurados por categoria
-AFFILIATE_LINKS = {
-    'renda_extra': {
-        'A': 'https://hotmart.com',
-        'B': 'https://hotmart.com',
-        'C': 'https://hotmart.com'
-    },
-    'saude': {
-        'A': 'https://hotmart.com',
-        'B': 'https://hotmart.com',
-        'C': 'https://hotmart.com'
-    }
-}
+### Estrutura de Quizzes Atualizada para Venda de Infoprodutos
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+QUIZZES = {  
+'renda\_extra': \[  
+{  
+'id': 1,  
+'texto': 'Qual área do mercado digital ou profissional você mais tem interesse em aprender?',  
+'opcoes': {  
+'A': 'Design de Unhas e Estética (Curso de Manicure Profissional)',  
+'B': 'Inteligência Artificial e Produtividade (Curso de IA / ChatGPT)',  
+'C': 'Finanças Pessoais e Investimentos (Organização Financeira)'  
+}  
+},  
+{  
+'id': 2,  
+'texto': 'Qual é o seu principal objetivo ao adquirir esse treinamento?',  
+'opcoes': {  
+'A': 'Trabalhar da minha própria casa e criar uma nova profissão lucrativa',  
+'B': 'Aumentar meus resultados e ganhar tempo no meu trabalho atual usando tecnologia',  
+'C': 'Organizar minhas contas, sair das dívidas e começar a investir do zero'  
+}  
+}  
+\],  
+'saude': \[  
+{  
+'id': 1,  
+'texto': 'Qual é o seu principal objetivo em relação ao seu corpo hoje?',  
+'opcoes': {  
+'A': 'Perder peso rapidamente de forma saudável (Reeducação Alimentar)',  
+'B': 'Definir os músculos e ganhar condicionamento físico praticando exercícios',  
+'C': 'Aprender receitas práticas e rápidas para a rotina corrida'  
+}  
+},  
+{  
+'id': 2,  
+'texto': 'Qual é o maior obstáculo que te impede de alcançar sua meta de saúde?',  
+'opcoes': {  
+'A': 'Falta de conhecimento sobre alimentação correta (efeito sanfona)',  
+'B': 'Falta de tempo para ir à academia todos os dias',  
+'C': 'Não saber cozinhar pratos saudáveis que sejam saborosos'  
+}  
+}  
+\]  
+} 
 
-@app.route('/quiz/<categoria>')
-def iniciar_quiz(categoria):
-    if categoria not in QUIZZES:
-        return redirect(url_for('index'))
-    
-    session['categoria'] = categoria
-    session['respostas'] = []
-    return redirect(url_for('mostrar_pergunta', pergunta_id=1))
+### Links de afiliados configurados por categoria e resposta predominante
 
-@app.route('/pergunta/<int:pergunta_id>', methods=['GET', 'POST'])
-def mostrar_pergunta(pergunta_id):
-    categoria = session.get('categoria')
-    if not categoria or categoria not in QUIZZES:
-        return redirect(url_for('index'))
-    
-    perguntas = QUIZZES[categoria]
-    
-    if pergunta_id > len(perguntas):
-        return redirect(url_for('mostrar_resultado'))
-        
-    pergunta_atual = perguntas[pergunta_id - 1]
-    
-    if request.method == 'POST':
-        resposta = request.form.get('resposta')
-        if resposta:
-            respostas = session.get('respostas', [])
-            respostas.append(resposta)
-            session['respostas'] = respostas
-            return redirect(url_for('mostrar_pergunta', pergunta_id=pergunta_id + 1))
-            
-    return render_template('quiz.html', pergunta=pergunta_atual, total=len(perguntas), atual=pergunta_id)
+AFFILIATE\_LINKS = {  
+'renda\_extra': {  
+'A': 'hotmart.com',  
+'B': 'hotmart.com',  
+'C': 'hotmart.com'  
+},  
+'saude': {  
+'A': 'hotmart.com',  
+'B': 'hotmart.com',  
+'C': 'hotmart.com'  
+}  
+} 
 
-@app.route('/resultado')
-def mostrar_resultado():
-    categoria = session.get('categoria')
-    respostas = session.get('respostas', [])
-    
-    if not categoria or not respostas:
-        return redirect(url_for('index'))
-        
-    perfil = max(set(respostas), key=respostas.count) if respostas else 'A'
-    link_final = AFFILIATE_LINKS.get(categoria, {}).get(perfil, '#')
-    
-    return render_template('resultado.html', perfil=perfil, link_checkout=link_final, categoria=categoria)
+@app.route('/')  
+def index():  
+return render\_template('index.html') 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/quiz/')  
+def iniciar\_quiz(categoria):  
+if categoria not in QUIZZES:  
+return redirect(url\_for('index')) 
+
+session\['categoria'\] = categoria  
+session\['respostas'\] = \[\]  
+return redirect(url\_for('mostrar\_pergunta', pergunta\_id=1)) 
+
+@app.route('/pergunta/int:pergunta\_id', methods=\['GET', 'POST'\])  
+def mostrar\_pergunta(pergunta\_id):  
+categoria = session.get('categoria')  
+if not categoria or categoria not in QUIZZES:  
+return redirect(url\_for('index')) 
+
+perguntas = QUIZZES\[categoria\] 
+
+if pergunta\_id > len(perguntas):  
+return redirect(url\_for('mostrar\_resultado')) 
+
+pergunta\_atual = perguntas\[pergunta\_id - 1\] 
+
+if request.method == 'POST':  
+resposta = request.form.get('resposta')  
+if resposta:  
+respostas = session.get('respostas', \[\])  
+respostas.append(resposta)  
+session\['respostas'\] = respostas  
+return redirect(url\_for('mostrar\_pergunta', pergunta\_id=pergunta\_id + 1)) 
+
+return render\_template('quiz.html', pergunta=pergunta\_atual, total=len(perguntas), atual=pergunta\_id) 
+
+@app.route('/resultado')  
+def mostrar\_resultado():  
+categoria = session.get('categoria')  
+respostas = session.get('respostas', \[\]) 
+
+if not categoria or not respostas:  
+return redirect(url\_for('index')) 
+
+perfil = max(set(respostas), key=respostas.count) if respostas else 'A'  
+link\_final = AFFILIATE\_LINKS.get(categoria, {}).get(perfil, '#') 
+
+return render\_template('resultado.html', perfil=perfil, link\_checkout=link\_final, categoria=categoria) 
+
+if **name** == '**main**':  
+app.run(debug=True)

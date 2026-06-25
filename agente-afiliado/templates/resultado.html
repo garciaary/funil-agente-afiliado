@@ -1,60 +1,92 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Resultado</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        p {
-            color: #555;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        .offer-link {
-            background-color: #3498db;
-            color: white;
-            padding: 16px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 18px;
-            display: inline-block;
-            transition: background-color 0.2s;
-        }
-        .offer-link:hover {
-            background-color: #2980b9;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🎉 Parabéns! Você completou o quiz!</h1>
-        <p>Com base nas suas respostas, selecionamos a melhor solução para o seu perfil <strong>{{ perfil }}</strong>.</p>
-        <p>Clique abaixo para acessar sua oferta personalizada:</p>
-        <a href="{{ link_checkout }}" class="offer-link" target="_blank">Acessar Minha Oferta →</a>
-    </div>
-</body>
-</html>
+Seu Resultado  
+  
+body {  
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);  
+margin: 0;  
+padding: 0;  
+display: flex;  
+justify-content: center;  
+align-items: center;  
+min-height: 100vh;  
+}  
+.container {  
+background-color: white;  
+border-radius: 16px;  
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);  
+padding: 40px;  
+max-width: 500px;  
+width: 90%;  
+text-align: center;  
+}  
+.icon {  
+font-size: 55px;  
+margin-bottom: 15px;  
+}  
+h2 {  
+color: #2d3748;  
+margin-bottom: 15px;  
+font-size: 24px;  
+font-weight: bold;  
+}  
+p {  
+color: #4a5568;  
+font-size: 16px;  
+line-height: 1.6;  
+margin-bottom: 30px;  
+}  
+.btn-afiliado {  
+display: inline-block;  
+background-color: #38a169;  
+color: white;  
+padding: 16px 30px;  
+border-radius: 8px;  
+text-decoration: none;  
+font-weight: bold;  
+font-size: 18px;  
+transition: all 0.2s;  
+box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);  
+width: 100%;  
+box-sizing: border-box;  
+}  
+.btn-afiliado:hover {  
+background-color: #2f855a;  
+transform: translateY(-2px);  
+}  
+  
+  
+  
+ 
+
+{% if categoria == 'renda\_extra' %}  
+{% if perfil == 'A' %}  
+💅  
+Indicação Profissional Encontrada!  
+Analisamos seu perfil e o melhor caminho para você é o mercado de estética. Encontramos um curso profissional de Manicure completo, feito para você aprender técnicas exclusivas do zero e faturar alto lotando sua agenda.  
+{% elif perfil == 'B' %}  
+🤖  
+Alavanque com Inteligência Artificial!  
+O melhor direcionamento para você é dominar as ferramentas digitais mais modernas do mercado. Selecionamos o melhor treinamento de IA e ChatGPT para multiplicar sua produtividade e escalar seus ganhos.  
+{% else %}  
+💰  
+Domine suas Finanças Pessoais!  
+O diagnóstico aponta que você precisa de uma virada financeira estruturada. Recomendamos o método de organização e investimentos para iniciantes, focado em fazer sobrar dinheiro e criar patrimônio.  
+{% endif %} 
+
+{% else %}  
+{% if perfil == 'A' %}  
+🥗  
+Seu Plano de Reeducação Alimentar!  
+Com base nos seus objetivos, você precisa de um plano alimentar estratégico. Separamos o e-book definitivo de emagrecimento saudável, perfeito para acelerar seu metabolismo sem precisar passar fome.  
+{% elif perfil == 'B' %}  
+💪  
+Treine Sem Sair de Casa!  
+Você precisa de treinos eficientes que se encaixem na sua rotina corrida. Recomendamos o cronograma de exercícios focados para fazer em casa em apenas 20 minutos por dia, com resultados de academia.  
+{% else %}  
+🍳  
+Guia Prático de Receitas Fit!  
+Seu maior aliado será a praticidade na cozinha. Selecionamos o melhor compilado de receitas saudáveis, baratas e deliciosas que ficam prontas em minutos para manter seu foco sem perder o sabor.  
+{% endif %}  
+{% endif %} 
+
+Acessar Conteúdo Recomendado
