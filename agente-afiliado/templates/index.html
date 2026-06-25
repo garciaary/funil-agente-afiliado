@@ -1,184 +1,188 @@
-Agente Afiliado  
- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agente Afiliado</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        .column {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .column.left {
+            background-color: #ffffff;
+        }
+        .column.right {
+            background-color: #e0f2f7;
+        }
+        .column h1 {
+            color: #2c3e50;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .column p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 350px;
+        }
+        .btn {
+            display: block;
+            padding: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        .btn-renda {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-saude {
+            background-color: #3498db;
+            color: white;
+        }
+        .column img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-top: 30px;
+        }
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            background-color: #1a252f;
+            color: #bdc3c7;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.6;
+            border-top: 3px solid #2c3e50;
+        }
+        footer p {
+            max-width: 900px;
+            margin: 0 auto 10px auto;
+        }
+        footer .disclaimer {
+            color: #7f8c8d;
+            font-size: 11px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .column {
+                flex: 100%;
+                padding: 30px;
+            }
+            .column.left, .column.right {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+            .column h1 {
+                font-size: 2em;
+            }
+            .column p {
+                font-size: 1em;
+            }
+            .btn {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
 
-  
-  
-body {  
-font-family: 'Roboto', sans-serif;  
-margin: 0;  
-padding: 0;  
-box-sizing: border-box;  
-background-color: #f4f7f6;  
-color: #333;  
-display: flex;  
-flex-direction: column;  
-min-height: 100vh;  
-}  
-.container {  
-display: flex;  
-flex-wrap: wrap;  
-flex: 1;  
-}  
-.column {  
-flex: 1;  
-padding: 40px;  
-display: flex;  
-flex-direction: column;  
-justify-content: center;  
-align-items: center;  
-text-align: center;  
-}  
-.column.left {  
-background-color: #ffffff;  
-}  
-.column.right {  
-background-color: #e0f2f7;  
-}  
-.column h1 {  
-color: #2c3e50;  
-font-size: 2.8em;  
-margin-bottom: 20px;  
-line-height: 1.2;  
-}  
-.column p {  
-font-size: 1.1em;  
-line-height: 1.6;  
-margin-bottom: 30px;  
-max-width: 600px;  
-}  
-.btn-group {  
-display: flex;  
-flex-direction: column;  
-gap: 15px;  
-width: 100%;  
-max-width: 350px;  
-}  
-.btn {  
-display: block;  
-padding: 16px;  
-border-radius: 8px;  
-text-decoration: none;  
-font-weight: bold;  
-font-size: 18px;  
-transition: transform 0.2s, box-shadow 0.2s;  
-cursor: pointer;  
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
-}  
-.btn:hover {  
-transform: translateY(-2px);  
-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);  
-}  
-.btn-renda {  
-background-color: #28a745;  
-color: white;  
-}  
-.btn-saude {  
-background-color: #3498db;  
-color: white;  
-}  
-.column img {  
-max-width: 80%;  
-height: auto;  
-border-radius: 12px;  
-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);  
-margin-top: 30px;  
-} 
+    <div class="container">
+        <div class="column left">
+            <h1>Torne-se um Agente Afiliado de Sucesso</h1>
+            <p>Descubra como você pode começar sua jornada no marketing de afiliados e alcançar a liberdade financeira trabalhando de onde quiser. Escolha uma categoria abaixo para iniciar o teste.</p>
+            
+            <div class="btn-group">
+                <a href="/quiz/renda_extra" class="btn btn-renda">💰 Renda Extra & Marketing</a>
+                <a href="/quiz/saude" class="btn btn-saude">🌱 Saúde & Bem-Estar</a>
+            </div>
+        </div>
+        
+        <div class="column right">
+            <img src="{{ url_for('static', filename='home-office.png') }}" alt="Pessoa trabalhando em home office">
+        </div>
+    </div>
 
-/\* Botão Flutuante do WhatsApp \*/  
-.whatsapp-float {  
-position: fixed;  
-width: 60px;  
-height: 60px;  
-bottom: 40px;  
-right: 40px;  
-background-color: #25d366;  
-color: #FFF;  
-border-radius: 50px;  
-text-align: center;  
-font-size: 30px;  
-box-shadow: 2px 2px 10px rgba(0,0,0,0.2);  
-z-index: 100;  
-display: flex;  
-justify-content: center;  
-align-items: center;  
-text-decoration: none;  
-transition: transform 0.3s;  
-}  
-.whatsapp-float:hover {  
-transform: scale(1.1);  
-} 
+    <a href="https://wa.me." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-/\* Rodapé Institucional Antiga Bloqueio \*/  
-footer {  
-background-color: #1a252f;  
-color: #bdc3c7;  
-padding: 30px 20px;  
-text-align: center;  
-font-size: 12px;  
-line-height: 1.6;  
-border-top: 3px solid #2c3e50;  
-}  
-footer p {  
-max-width: 900px;  
-margin: 0 auto 10px auto;  
-}  
-footer .disclaimer {  
-color: #7f8c8d;  
-font-size: 11px;  
-margin-top: 15px;  
-} 
+    <footer>
+        <p><strong>Agente Afiliado Digital</strong></p>
+        <p>Os resultados podem variar de pessoa para pessoa. Todas as estratégias ensinadas exigem esforço, dedicação e aplicação prática constante.</p>
+        <p class="disclaimer">Este site não faz parte do site do Facebook ou do Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc. Este site NÃO possui qualquer vínculo com a Google LLC.</p>
+    </footer>
 
-@media (max-width: 768px) {  
-.column {  
-flex: 100%;  
-padding: 30px;  
-}  
-.column.left, .column.right {  
-padding-top: 60px;  
-padding-bottom: 60px;  
-}  
-.column h1 {  
-font-size: 2em;  
-}  
-.column p {  
-font-size: 1em;  
-}  
-.btn {  
-font-size: 16px;  
-padding: 12px 25px;  
-}  
-.whatsapp-float {  
-width: 50px;  
-height: 50px;  
-bottom: 20px;  
-right: 20px;  
-font-size: 25px;  
-}  
-}  
-  
-  
- 
-
-  
-Torne-se um Agente Afiliado de Sucesso  
-Descubra como você pode começar sua jornada no marketing de afiliados e alcançar a liberdade financeira trabalhando de onde quiser. Escolha uma categoria abaixo para iniciar o teste. 
-
-  
-💰 Renda Extra & Marketing  
-🌱 Saúde & Bem-Estar  
-  
- 
-
-  
-  
-  
- 
-
-  
-  
- 
-
-  
-**Agente Afiliado Digital**  
-Os resultados podem variar de pessoa para pessoa. Todas as estratégias ensinadas exigem esforço, dedicação e aplicação prática constante. Não garantimos ganhos fixos ou facilidades.  
-Este site não faz parte do site do Facebook ou do Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc. Este site NÃO possui qualquer vínculo com a Google LLC.
+</body>
+</html>
