@@ -1,329 +1,127 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funil Agente Afiliado</title>
+    <title>Agente Afiliado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
             min-height: 100vh;
+        }
+        .column {
+            flex: 1;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* HERO FUNDO ANIMADO */
-        .hero-section {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            background-size: 400% 400%;
-            animation: gradientMove 8s ease infinite;
-            position: relative;
-            overflow: hidden;
-            padding: 80px 20px 60px;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .column.left {
+            background-color: #ffffff;
         }
-
-        /* FORMAS GEOMÉTRICAS ANIMADAS */
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.08;
-            animation: float 6s ease-in-out infinite;
+        .column.right {
+            background-color: #e0f2f7; /* Um azul claro */
         }
-        .shape1 { width: 300px; height: 300px; background: #60a5fa; top: -80px; left: -80px; animation-delay: 0s; }
-        .shape2 { width: 200px; height: 200px; background: #a78bfa; bottom: -60px; right: -60px; animation-delay: 2s; }
-        .shape3 { width: 150px; height: 150px; background: #34d399; top: 40%; left: 60%; animation-delay: 4s; }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .column h1 {
+            color: #2c3e50;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.15);
-            color: #a5f3fc;
-            font-size: 13px; font-weight: 600;
-            padding: 6px 18px; border-radius: 99px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
+        .column p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 600px;
         }
-        .hero-title {
-            font-size: 36px; font-weight: 800;
-            color: white; line-height: 1.25;
-            margin-bottom: 16px;
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 350px;
         }
-        .hero-title span { color: #60a5fa; }
-        .hero-subtitle {
-            color: #cbd5e1; font-size: 16px;
-            max-width: 480px; margin: 0 auto 32px;
-            line-height: 1.7;
-        }
-        .hero-cta {
-            display: inline-block;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white; font-size: 16px; font-weight: 700;
-            padding: 16px 36px; border-radius: 99px;
-            text-decoration: none;
-            box-shadow: 0 8px 32px rgba(59,130,246,0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 40px rgba(59,130,246,0.5);
-        }
-
-        /* TRUST BADGES */
-        .trust {
-            display: flex; flex-wrap: wrap;
-            justify-content: center; gap: 10px;
-            padding: 28px 20px;
-            background: #f8fafc;
-        }
-        .trust-item {
-            background: white; border-radius: 99px;
-            padding: 8px 18px; font-size: 13px;
-            color: #475569; font-weight: 500;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            border: 1px solid #e2e8f0;
-        }
-
-        /* COMO FUNCIONA */
-        .how-section {
-            background: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        .section-title {
-            font-size: 26px; font-weight: 800;
-            color: #1e293b; margin-bottom: 8px;
-        }
-        .section-sub {
-            color: #94a3b8; font-size: 15px;
-            margin-bottom: 48px;
-        }
-        .steps {
-            display: flex; flex-wrap: wrap;
-            justify-content: center; gap: 32px;
-            max-width: 800px; margin: 0 auto;
-        }
-        .step {
-            max-width: 220px; text-align: center;
-        }
-        .step-number {
-            width: 56px; height: 56px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white; font-size: 22px; font-weight: 800;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 16px;
-            box-shadow: 0 6px 20px rgba(59,130,246,0.3);
-        }
-        .step h4 { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
-        .step p { font-size: 13px; color: #94a3b8; line-height: 1.6; }
-
-        /* DEPOIMENTO */
-        .testimonial-section {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            padding: 50px 20px;
-            text-align: center;
-        }
-        .testimonial-card {
-            background: white; border-radius: 20px;
-            padding: 32px; max-width: 480px;
-            margin: 0 auto;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
-        .testimonial-card p {
-            font-size: 15px; color: #475569;
-            line-height: 1.7; margin-bottom: 20px;
-            font-style: italic;
-        }
-        .testimonial-author {
-            display: flex; align-items: center;
-            justify-content: center; gap: 12px;
-        }
-        .avatar {
-            width: 44px; height: 44px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: 700; font-size: 16px;
-        }
-        .author-info { text-align: left; }
-        .author-name { font-weight: 700; color: #1e293b; font-size: 14px; }
-        .author-desc { color: #94a3b8; font-size: 12px; }
-        .stars { color: #f59e0b; font-size: 16px; margin-bottom: 12px; }
-
-        /* PROVA SOCIAL */
-        .social-proof {
-            text-align: center; padding: 20px;
-            background: #f8fafc;
-            color: #94a3b8; font-size: 14px;
-        }
-        .social-proof strong { color: #3b82f6; }
-
-        /* CARDS */
-        .cards-section {
-            background: #f8fafc;
-            padding: 20px 24px 60px;
-        }
-        .cards {
-            display: flex; flex-wrap: wrap;
-            justify-content: center; gap: 24px;
-            max-width: 700px; margin: 0 auto;
-        }
-        .card {
-            background: white; border-radius: 24px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-            padding: 36px 28px; max-width: 290px; width: 100%;
-            text-align: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 2px solid transparent;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 48px rgba(0,0,0,0.14);
-            border-color: #e0e7ff;
-        }
-        .card-icon { font-size: 52px; margin-bottom: 18px; }
-        .card h3 { font-size: 18px; font-weight: 800; color: #1e293b; margin-bottom: 10px; }
-        .card p { font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 28px; }
         .btn {
-            display: block; padding: 15px;
-            border-radius: 14px; font-size: 15px;
-            font-weight: 700; color: white;
+            display: block;
+            padding: 16px;
+            border-radius: 8px;
             text-decoration: none;
-            transition: opacity 0.2s, transform 0.2s;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .btn:hover { opacity: 0.88; transform: scale(1.03); }
-        .btn-yellow { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .btn-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
-
-        /* URGENCIA */
-        .urgency {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            text-align: center; padding: 18px 20px;
-            font-size: 14px; color: #92400e; font-weight: 600;
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
         }
-
-        /* FOOTER */
-        footer {
-            background: #0f172a; color: #475569;
-            text-align: center; padding: 24px 20px;
-            font-size: 13px; margin-top: auto;
+        .btn-renda {
+            background-color: #28a745;
+            color: white;
         }
-        footer a { color: #60a5fa; text-decoration: none; margin: 0 8px; }
-        footer a:hover { color: #93c5fd; }
-        footer .heart { color: #f43f5e; }
+        .btn-saude {
+            background-color: #3498db;
+            color: white;
+        }
+        .column img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-top: 30px;
+        }
+        @media (max-width: 768px) {
+            .column {
+                flex: 100%;
+                padding: 30px;
+            }
+            .column.left, .column.right {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+            .column h1 {
+                font-size: 2em;
+            }
+            .column p {
+                font-size: 1em;
+            }
+            .btn {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <!-- HERO -->
-    <section class="hero-section">
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-        <div class="hero-badge">🚀 Mais de 500 pessoas já transformaram suas vidas</div>
-        <h1 class="hero-title">Descubra qual produto é<br><span>perfeito para você</span> 🎯</h1>
-        <p class="hero-subtitle">Responda 3 perguntas rápidas e receba uma recomendação 100% personalizada para o seu perfil.</p>
-        <a href="#quizzes" class="hero-cta">✨ Quero descobrir agora</a>
-    </section>
-
-    <!-- TRUST BADGES -->
-    <div class="trust">
-        <div class="trust-item">⚡ Leva menos de 2 minutos</div>
-        <div class="trust-item">✅ Resultado personalizado</div>
-        <div class="trust-item">🔓 100% gratuito</div>
-        <div class="trust-item">📋 Sem cadastro</div>
-        <div class="trust-item">🔒 Seguro e confiável</div>
-    </div>
-
-    <!-- COMO FUNCIONA -->
-    <section class="how-section">
-        <h2 class="section-title">Como funciona?</h2>
-        <p class="section-sub">Simples, rápido e eficiente</p>
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h4>Escolha sua área</h4>
-                <p>Selecione entre Renda Extra ou Saúde & Bem-Estar conforme seu interesse.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h4>Responda o quiz</h4>
-                <p>São apenas 3 perguntas rápidas sobre seu perfil e objetivos.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h4>Receba sua oferta</h4>
-                <p>Você recebe a recomendação ideal e acessa a oferta personalizada.</p>
+    <div class="container">
+        <!-- Coluna da Esquerda: Textos e Menu de Quizzes -->
+        <div class="column left">
+            <h1>Torne-se um Agente Afiliado de Sucesso</h1>
+            <p>Descubra como você pode começar sua jornada no marketing de afiliados e alcançar a liberdade financeira trabalhando de onde quiser. Escolha uma categoria abaixo para iniciar o teste.</p>
+            
+            <div class="btn-group">
+                <a href="/quiz/renda_extra" class="btn btn-renda">💰 Renda Extra & Marketing</a>
+                <a href="/quiz/saude" class="btn btn-saude">🌱 Saúde & Bem-Estar</a>
             </div>
         </div>
-    </section>
-
-    <!-- DEPOIMENTO -->
-    <section class="testimonial-section">
-        <h2 class="section-title" style="margin-bottom:32px;">O que dizem por aí 💬</h2>
-        <div class="testimonial-card">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>"Fiz o quiz em menos de 2 minutos e recebi exatamente o que eu precisava. Comecei a ganhar minha primeira renda extra no mesmo mês!"</p>
-            <div class="testimonial-author">
-                <div class="avatar">J</div>
-                <div class="author-info">
-                    <div class="author-name">João Silva</div>
-                    <div class="author-desc">Afiliado iniciante • São Paulo, SP</div>
-                </div>
-            </div>
+        
+        <!-- Coluna da Direita: Sua imagem em formato PNG -->
+        <div class="column right">
+            <img src="{{ url_for('static', filename='home-office.png') }}" alt="Pessoa trabalhando em home office">
         </div>
-    </section>
-
-    <!-- PROVA SOCIAL -->
-    <div class="social-proof">
-        <strong>+ de 500 pessoas</strong> já descobriram seu perfil ideal esta semana
     </div>
-
-    <!-- URGENCIA -->
-    <div class="urgency">
-        ⏱️ Ofertas personalizadas disponíveis por tempo limitado — Garanta a sua agora!
-    </div>
-
-    <!-- CARDS -->
-    <section class="cards-section" id="quizzes">
-        <div class="cards">
-            <div class="card">
-                <div class="card-icon">💰</div>
-                <h3>Renda Extra & Marketing</h3>
-                <p>Descubra oportunidades de afiliados, IA e negócios online. Ideal para quem quer ganhar na internet.</p>
-                <a href="/quiz/renda_extra" class="btn btn-yellow">🚀 Quero começar agora →</a>
-            </div>
-            <div class="card">
-                <div class="card-icon">💚</div>
-                <h3>Saúde & Bem-Estar</h3>
-                <p>Encontre produtos e soluções alinhadas ao seu perfil. Transforme sua saúde com o produto certo.</p>
-                <a href="/quiz/saude" class="btn btn-green">💪 Quero transformar minha saúde →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        © 2026 Agente Afiliado Pro &nbsp;|&nbsp;
-        <a href="https://wa.me/SEU_NUMERO" target="_blank">WhatsApp</a>
-        <a href="https://instagram.com/SEU_PERFIL" target="_blank">Instagram</a>
-        <br><br>
-        Feito com <span class="heart">❤️</span> pela IA
-    </footer>
-
 </body>
 </html>
