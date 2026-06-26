@@ -1,20 +1,20 @@
-from flask import Flask, render\_template, request 
+from flask import Flask, render_template, request
 
-app = Flask(**name**) 
+app = Flask(__name__)
 
-@app.route('/')  
-def index():  
-return render\_template('index.html') 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-@app.route('/quiz')  
-def quiz():  
-return render\_template('quiz.html') 
+@app.route('/quiz')
+def quiz():
+    return render_template('quiz.html')
 
-@app.route('/resultado')  
-def resultado():  
-categoria = request.args.get('categoria', '')  
-perfil = request.args.get('perfil', '')  
-return render\_template('resultado.html', categoria=categoria, perfil=perfil) 
+@app.route('/resultado')
+def resultado():
+    categoria = request.args.get('categoria', '')
+    perfil = request.args.get('perfil', '')
+    return render_template('resultado.html', categoria=categoria, perfil=perfil)
 
-if **name** == '**main**':  
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
