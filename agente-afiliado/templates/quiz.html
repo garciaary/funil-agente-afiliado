@@ -1,79 +1,168 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Recomendador</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-        }
-        .progress {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 10px;
-            text-align: right;
-        }
-        h2 {
-            color: #333;
-            margin-bottom: 25px;
-            font-size: 22px;
-            line-height: 1.4;
-        }
-        .options-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .option-btn {
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 16px;
-            text-align: left;
-            font-size: 16px;
-            color: #495057;
-            cursor: pointer;
-            transition: all 0.2s;
-            width: 100%;
-        }
-        .option-btn:hover {
-            background-color: #e8f4fd;
-            border-color: #3498db;
-            color: #0056b3;
-            transform: translateX(4px);
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz — Evolução Digital</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f4ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+
+    .card { background: white; border-radius: 20px; padding: 48px; max-width: 680px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,0.10); }
+
+    .progress-bar { display: flex; gap: 8px; margin-bottom: 32px; }
+    .step { flex: 1; height: 6px; border-radius: 3px; background: #e5e7eb; transition: background 0.3s; }
+    .step.done { background: #4f46e5; }
+    .step.active { background: #818cf8; }
+
+    .question-label { font-size: 13px; color: #9ca3af; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    h2 { font-size: 24px; font-weight: 700; color: #1e1b4b; margin-bottom: 28px; line-height: 1.35; }
+
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .opt { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 14px; padding: 20px 16px; cursor: pointer; text-align: center; transition: all 0.2s; }
+    .opt:hover { border-color: #4f46e5; background: #eef2ff; transform: translateY(-2px); }
+    .opt.selected { border-color: #4f46e5; background: #eef2ff; }
+    .opt-icon { font-size: 32px; margin-bottom: 10px; }
+    .opt-title { font-size: 14px; font-weight: 700; color: #1e1b4b; margin-bottom: 4px; }
+    .opt-sub   { font-size: 12px; color: #9ca3af; }
+
+    .back-link { display: inline-block; margin-top: 28px; font-size: 13px; color: #9ca3af; text-decoration: none; }
+    .back-link:hover { color: #4f46e5; }
+
+    /* pergunta 2 oculta inicialmente */
+    #q2 { display: none; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="progress">Pergunta {{ atual }} de {{ total }}</div>
-        <h2>{{ pergunta.texto }}</h2>
+<div class="card">
+  <div class="progress-bar">
+    <div class="step active" id="s1"></div>
+    <div class="step" id="s2"></div>
+  </div>
 
-        <div class="options-form">
-            <form action="/pergunta/{{ atual }}" method="POST">
-                {% for letra, texto_opcao in pergunta.opcoes.items() %}
-                    <button class="option-btn" type="submit" name="resposta" value="{{ letra }}">
-                        <strong>{{ letra }}</strong> — {{ texto_opcao }}
-                    </button>
-                {% endfor %}
-            </form>
-        </div>
+  <!-- Pergunta 1 -->
+  <div id="q1">
+    <p class="question-label">Pergunta 1 de 2</p>
+    <h2>Qual área você quer transformar agora?</h2>
+    <div class="options">
+      <div class="opt" onclick="escolher(1,'profissional')">
+        <div class="opt-icon">💼</div>
+        <div class="opt-title">Vida profissional</div>
+        <div class="opt-sub">Carreira, finanças e IA</div>
+      </div>
+      <div class="opt" onclick="escolher(1,'saude')">
+        <div class="opt-icon">💪</div>
+        <div class="opt-title">Saúde e bem-estar</div>
+        <div class="opt-sub">Emagrecimento e treinos</div>
+      </div>
+      <div class="opt" onclick="escolher(1,'estetica')">
+        <div class="opt-icon">✨</div>
+        <div class="opt-title">Estética e beleza</div>
+        <div class="opt-sub">Cursos de aparência</div>
+      </div>
+      <div class="opt" onclick="escolher(1,'espiritualidade')">
+        <div class="opt-icon">🙏</div>
+        <div class="opt-title">Fé e espiritualidade</div>
+        <div class="opt-sub">Crescimento espiritual</div>
+      </div>
     </div>
+    <a href="/" class="back-link">← Voltar ao início</a>
+  </div>
+
+  <!-- Pergunta 2 -->
+  <div id="q2">
+    <p class="question-label">Pergunta 2 de 2</p>
+    <h2 id="q2-titulo">Qual é o seu maior objetivo agora?</h2>
+    <div class="options" id="q2-options"></div>
+    <a href="#" class="back-link" onclick="voltarQ1()">← Voltar</a>
+  </div>
+</div>
+
+<script>
+  let categoria = '';
+
+  const pergunta2 = {
+    profissional: {
+      titulo: 'O que você quer alcançar na carreira?',
+      opcoes: [
+        { icon:'💰', titulo:'Aumentar minha renda', sub:'Renda extra e negócios', perfil:'A' },
+        { icon:'🤖', titulo:'Dominar Inteligência Artificial', sub:'IA no dia a dia', perfil:'B' },
+        { icon:'📈', titulo:'Investir melhor', sub:'Finanças pessoais', perfil:'C' },
+        { icon:'🏢', titulo:'Abrir meu negócio', sub:'Empreendedorismo', perfil:'D' },
+      ]
+    },
+    saude: {
+      titulo: 'Qual é seu foco principal de saúde?',
+      opcoes: [
+        { icon:'⚖️', titulo:'Emagrecer de vez', sub:'Perda de peso real', perfil:'A' },
+        { icon:'🥗', titulo:'Comer melhor', sub:'Receitas saudáveis', perfil:'B' },
+        { icon:'🏋️', titulo:'Treinar em casa', sub:'Sem academia', perfil:'C' },
+        { icon:'😴', titulo:'Mais energia e disposição', sub:'Qualidade de vida', perfil:'D' },
+      ]
+    },
+    estetica: {
+      titulo: 'O que você quer aprender em estética?',
+      opcoes: [
+        { icon:'💆', titulo:'Cuidados com a pele', sub:'Skincare e tratamentos', perfil:'A' },
+        { icon:'💄', titulo:'Maquiagem profissional', sub:'Técnicas avançadas', perfil:'B' },
+        { icon:'💅', titulo:'Micropigmentação', sub:'Sobrancelha e lábios', perfil:'C' },
+        { icon:'💇', titulo:'Cabelos e coloração', sub:'Técnicas de salão', perfil:'D' },
+      ]
+    },
+    espiritualidade: {
+      titulo: 'O que você busca na espiritualidade?',
+      opcoes: [
+        { icon:'📖', titulo:'Aprofundar minha fé', sub:'Estudos bíblicos e devocionais', perfil:'A' },
+        { icon:'🕊️', titulo:'Paz interior e propósito', sub:'Autoconhecimento espiritual', perfil:'B' },
+        { icon:'🙌', titulo:'Liderança e família', sub:'Relacionamentos e missão', perfil:'C' },
+        { icon:'✝️', titulo:'Vida cristã na prática', sub:'Hábitos e disciplina espiritual', perfil:'D' },
+      ]
+    },
+  };
+
+  function escolher(pergunta, valor) {
+    if (pergunta === 1) {
+      categoria = valor;
+      const q2data = pergunta2[valor];
+      document.getElementById('q2-titulo').textContent = q2data.titulo;
+
+      const container = document.getElementById('q2-options');
+      container.innerHTML = '';
+      q2data.opcoes.forEach(op => {
+        container.innerHTML += `
+          <div class="opt" onclick="irResultado('${op.perfil}')">
+            <div class="opt-icon">${op.icon}</div>
+            <div class="opt-title">${op.titulo}</div>
+            <div class="opt-sub">${op.sub}</div>
+          </div>`;
+      });
+
+      document.getElementById('q1').style.display = 'none';
+      document.getElementById('q2').style.display = 'block';
+      document.getElementById('s1').classList.add('done');
+      document.getElementById('s1').classList.remove('active');
+      document.getElementById('s2').classList.add('active');
+    }
+  }
+
+  function irResultado(perfil) {
+    window.location.href = `/resultado?categoria=${categoria}&perfil=${perfil}`;
+  }
+
+  function voltarQ1() {
+    document.getElementById('q2').style.display = 'none';
+    document.getElementById('q1').style.display = 'block';
+    document.getElementById('s1').classList.add('active');
+    document.getElementById('s1').classList.remove('done');
+    document.getElementById('s2').classList.remove('active');
+  }
+
+  // Se veio com categoria da index, pula para q1 mas com categoria pré-selecionada
+  const params = new URLSearchParams(window.location.search);
+  const catParam = params.get('categoria');
+  if (catParam && pergunta2[catParam]) {
+    escolher(1, catParam);
+  }
+</script>
 </body>
 </html>
