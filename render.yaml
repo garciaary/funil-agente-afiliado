@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: evolucao-digital
+    runtime: python
+    rootDir: agente-afiliado
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true

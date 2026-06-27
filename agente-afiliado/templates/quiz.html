@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Responda 2 perguntas e descubra o curso digital perfeito para você — Evolução Digital"/>
+  <meta name="theme-color" content="#4f46e5"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"/>
   <title>Quiz — Evolução Digital</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,8 +32,18 @@
     .back-link { display: inline-block; margin-top: 28px; font-size: 13px; color: #9ca3af; text-decoration: none; }
     .back-link:hover { color: #4f46e5; }
 
-    /* pergunta 2 oculta inicialmente */
     #q2 { display: none; }
+
+    .loading { display: none; text-align: center; padding: 40px 0; }
+    .loading.show { display: block; }
+    .spinner { width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top: 4px solid #4f46e5; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading p { color: #6b7280; font-size: 14px; }
+
+    @media(max-width: 680px) {
+      .options { grid-template-columns: 1fr; }
+      h2 { font-size: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -75,6 +88,12 @@
     <h2 id="q2-titulo">Qual é o seu maior objetivo agora?</h2>
     <div class="options" id="q2-options"></div>
     <a href="#" class="back-link" onclick="voltarQ1()">← Voltar</a>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>Preparando sua recomendação...</p>
   </div>
 </div>
 
@@ -128,13 +147,15 @@
 
       const container = document.getElementById('q2-options');
       container.innerHTML = '';
-      q2data.opcoes.forEach(op => {
-        container.innerHTML += `
-          <div class="opt" onclick="irResultado('${op.perfil}')">
-            <div class="opt-icon">${op.icon}</div>
-            <div class="opt-title">${op.titulo}</div>
-            <div class="opt-sub">${op.sub}</div>
-          </div>`;
+      q2data.opcoes.forEach(function(op) {
+        const div = document.createElement('div');
+        div.className = 'opt';
+        div.onclick = function() { irEmail(op.perfil); };
+        div.innerHTML =
+          '<div class="opt-icon">' + op.icon + '</div>' +
+          '<div class="opt-title">' + op.titulo + '</div>' +
+          '<div class="opt-sub">' + op.sub + '</div>';
+        container.appendChild(div);
       });
 
       document.getElementById('q1').style.display = 'none';
@@ -145,8 +166,15 @@
     }
   }
 
-  function irResultado(perfil) {
-    window.location.href = `/resultado?categoria=${categoria}&perfil=${perfil}`;
+  function irEmail(perfil) {
+    document.getElementById('q2').style.display = 'none';
+    document.getElementById('loading').classList.add('show');
+    document.getElementById('s2').classList.add('done');
+    document.getElementById('s2').classList.remove('active');
+
+    setTimeout(function() {
+      window.location.href = '/email-form?categoria=' + encodeURIComponent(categoria) + '&perfil=' + encodeURIComponent(perfil);
+    }, 600);
   }
 
   function voltarQ1() {
@@ -157,9 +185,9 @@
     document.getElementById('s2').classList.remove('active');
   }
 
-  // Se veio com categoria da index, pula para q1 mas com categoria pré-selecionada
-  const params = new URLSearchParams(window.location.search);
-  const catParam = params.get('categoria');
+  // Se veio com categoria da index, pula para q2
+  var params = new URLSearchParams(window.location.search);
+  var catParam = params.get('categoria');
   if (catParam && pergunta2[catParam]) {
     escolher(1, catParam);
   }

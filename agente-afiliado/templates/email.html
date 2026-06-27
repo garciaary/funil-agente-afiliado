@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Receba sua recomendação personalizada de curso digital — Evolução Digital"/>
+  <meta name="theme-color" content="#4f46e5"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"/>
+  <title>Quase lá! — Evolução Digital</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f4ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+
+    .card { background: white; border-radius: 20px; padding: 48px; max-width: 520px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,0.10); text-align: center; animation: fadeUp 0.5s ease; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .icon-big { font-size: 56px; margin-bottom: 20px; }
+    h1 { font-size: 26px; font-weight: 700; color: #1e1b4b; margin-bottom: 10px; line-height: 1.3; }
+    .subtitle { font-size: 15px; color: #6b7280; line-height: 1.7; margin-bottom: 28px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; text-align: left; }
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 15px;
+      color: #1e1b4b;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { border-color: #4f46e5; }
+    .form-group input::placeholder { color: #9ca3af; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .btn-submit:hover { transform: translateY(-2px); opacity: 0.92; }
+    .btn-submit:active { transform: translateY(0); }
+
+    .skip-link { display: inline-block; margin-top: 16px; font-size: 13px; color: #9ca3af; text-decoration: none; }
+    .skip-link:hover { color: #4f46e5; }
+
+    .privacy { font-size: 11px; color: #9ca3af; margin-top: 20px; line-height: 1.6; }
+    .privacy a { color: #4f46e5; text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="icon-big">📬</div>
+  <h1>Quase lá!</h1>
+  <p class="subtitle">Informe seu e-mail para receber a recomendação personalizada e conteúdos exclusivos.</p>
+
+  <form method="POST" action="/email" id="emailForm">
+    <input type="hidden" name="categoria" value="{{ categoria }}"/>
+    <input type="hidden" name="perfil" value="{{ perfil }}"/>
+    <input type="hidden" name="utm_source" value="{{ utm_source }}"/>
+    <input type="hidden" name="utm_medium" value="{{ utm_medium }}"/>
+    <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}"/>
+    <div class="form-group">
+      <label for="email">Seu melhor e-mail</label>
+      <input type="email" id="email" name="email" placeholder="exemplo@email.com" required/>
+    </div>
+    <button type="submit" class="btn-submit">Ver Meu Resultado Agora →</button>
+  </form>
+
+  <a href="#" class="skip-link" onclick="event.preventDefault(); document.getElementById('skipForm').submit();">Prefiro pular esta etapa</a>
+  <form id="skipForm" method="POST" action="/email" style="display:none;">
+    <input type="hidden" name="categoria" value="{{ categoria }}"/>
+    <input type="hidden" name="perfil" value="{{ perfil }}"/>
+    <input type="hidden" name="email" value=""/>
+  </form>
+
+  <p class="privacy">Seus dados estão seguros. Não compartilhamos com terceiros. <a href="#">Política de Privacidade</a></p>
+</div>
+</body>
+</html>

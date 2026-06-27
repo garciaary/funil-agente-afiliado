@@ -3,21 +3,31 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Descubra o curso digital ideal para você — Evolução Digital"/>
+  <meta property="og:title" content="Seu Resultado — Evolução Digital"/>
+  <meta property="og:description" content="Encontramos o conteúdo perfeito para transformar sua vida."/>
+  <meta property="og:type" content="website"/>
+  <meta name="theme-color" content="#4f46e5"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"/>
   <title>Seu Resultado — Evolução Digital</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', sans-serif; background: #f0f4ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
 
-    .card { background: white; border-radius: 20px; padding: 48px; max-width: 720px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,0.10); }
+    .card { background: white; border-radius: 20px; padding: 48px; max-width: 720px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,0.10); animation: fadeUp 0.5s ease; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .badge-perfil { display: inline-flex; align-items: center; gap: 8px; background: #eef2ff; color: #4f46e5; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; margin-bottom: 24px; }
 
     h1 { font-size: 28px; font-weight: 700; color: #1e1b4b; margin-bottom: 12px; line-height: 1.3; }
     .intro { font-size: 16px; color: #6b7280; line-height: 1.7; margin-bottom: 32px; }
 
-    .produto-card { border: 2px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 16px; transition: border-color 0.2s; }
-    .produto-card:hover { border-color: #4f46e5; }
-    .produto-card.destaque { border-color: #4f46e5; background: #fafafa; }
+    .produto-card { border: 2px solid #4f46e5; border-radius: 16px; padding: 28px; margin-bottom: 16px; background: #fafafa; transition: transform 0.2s; }
+    .produto-card:hover { transform: translateY(-3px); }
 
     .tag { display: inline-block; background: #dcfce7; color: #15803d; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-bottom: 10px; }
     .tag.popular { background: #fef9c3; color: #854d0e; }
@@ -36,139 +46,16 @@
 </head>
 <body>
 <div class="card">
+  <div class="badge-perfil">{{ produto.badge }}</div>
+  <h1>{{ produto.titulo }}</h1>
+  <p class="intro">{{ produto.intro }}</p>
 
-  {% if categoria == 'profissional' and perfil == 'A' %}
-    <div class="badge-perfil">💰 Perfil: Gerador de Renda</div>
-    <h1>Seu Plano para Aumentar a Renda</h1>
-    <p class="intro">Com base nas suas respostas, você precisa de estratégias práticas para gerar renda extra ainda este mês.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">Renda Extra Online — Do Zero ao Primeiro R$1.000</div>
-      <div class="produto-desc">Guia completo com 10 métodos validados para gerar renda extra sem precisar de investimento inicial.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'profissional' and perfil == 'B' %}
-    <div class="badge-perfil">🤖 Perfil: Especialista em IA</div>
-    <h1>Domine a Inteligência Artificial</h1>
-    <p class="intro">Você está no caminho certo. A IA vai transformar carreiras — e quem aprender agora sai na frente.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">IA Para Iniciantes — Use ChatGPT e Ganhe Dinheiro</div>
-      <div class="produto-desc">Do básico ao avançado: aprenda a usar ferramentas de IA para trabalhar menos e ganhar mais.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'profissional' %}
-    <div class="badge-perfil">📈 Perfil: Investidor</div>
-    <h1>Sua Jornada Financeira Começa Aqui</h1>
-    <p class="intro">Organize suas finanças e comece a investir com segurança — mesmo começando do zero.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">Finanças Pessoais — Guia Completo Para Sair do Vermelho</div>
-      <div class="produto-desc">Passo a passo para organizar, economizar e começar a investir com qualquer salário.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'saude' and perfil == 'A' %}
-    <div class="badge-perfil">⚖️ Perfil: Emagrecimento</div>
-    <h1>Seu Plano de Reeducação Alimentar</h1>
-    <p class="intro">Com base nos seus objetivos, você precisa de um método que alie alimentação e hábitos sustentáveis.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">Método Emagrecer de Vez — Sem Sofrimento</div>
-      <div class="produto-desc">Programa completo de reeducação alimentar com cardápios prontos e suporte profissional.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'saude' and perfil == 'B' %}
-    <div class="badge-perfil">🥗 Perfil: Alimentação Saudável</div>
-    <h1>Receitas Fit Para o Seu Dia a Dia</h1>
-    <p class="intro">Seu maior aliado será a praticidade na cozinha — receitas rápidas, gostosas e que emagrecem.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">Guia Prático de Receitas Fit</div>
-      <div class="produto-desc">100+ receitas saudáveis com lista de compras semanal e preparo em até 20 minutos.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'saude' %}
-    <div class="badge-perfil">💪 Perfil: Treino em Casa</div>
-    <h1>Treine Sem Sair de Casa!</h1>
-    <p class="intro">Você precisa de treinos eficientes que se encaixem na sua rotina — sem academia e sem equipamentos.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">Treino em Casa — 21 Dias de Transformação</div>
-      <div class="produto-desc">Programa completo com vídeos, planilha de treino e acompanhamento de evolução.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'estetica' %}
-    <div class="badge-perfil">✨ Perfil: Estética e Beleza</div>
-    <h1>Seu Curso de Estética Ideal</h1>
-    <p class="intro">Aprenda técnicas profissionais de beleza e transforme sua paixão em renda extra.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">Curso Completo de Estética — Do Básico ao Profissional</div>
-      <div class="produto-desc">Técnicas de skincare, maquiagem e micropigmentação com certificado incluído.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'espiritualidade' and perfil == 'A' %}
-    <div class="badge-perfil">📖 Perfil: Buscador da Fé</div>
-    <h1>Aprofunde Sua Fé com Conteúdo de Qualidade</h1>
-    <p class="intro">Você está em busca de um relacionamento mais profundo com Deus. Separamos os melhores e-books de estudo bíblico para essa jornada.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">E-book: Devocional Diário — 365 Reflexões Bíblicas</div>
-      <div class="produto-desc">Um guia devocional completo para você ter um momento diário com Deus, com reflexões práticas e aplicáveis à sua vida.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'espiritualidade' and perfil == 'B' %}
-    <div class="badge-perfil">🕊️ Perfil: Buscador de Propósito</div>
-    <h1>Encontre Paz Interior e Seu Propósito</h1>
-    <p class="intro">A espiritualidade é o alicerce de tudo. Separamos um guia para você descobrir sua identidade em Deus e viver com propósito.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">E-book: Propósito de Vida — Descubra Para Que Você Foi Criado</div>
-      <div class="produto-desc">Um guia espiritual e prático para quem quer entender sua missão, sair da estagnação e viver com significado real.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'espiritualidade' and perfil == 'C' %}
-    <div class="badge-perfil">🙌 Perfil: Líder Espiritual</div>
-    <h1>Fortaleça Sua Família e Sua Liderança</h1>
-    <p class="intro">Um líder começa dentro de casa. Você receberá conteúdos que unem fé, família e missão de forma prática.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">E-book: Família no Centro — Criando um Lar com Fé e Propósito</div>
-      <div class="produto-desc">Guia completo para fortalecer os laços familiares, exercer liderança cristã e criar filhos com valores sólidos.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% elif categoria == 'espiritualidade' %}
-    <div class="badge-perfil">✝️ Perfil: Discípulo na Prática</div>
-    <h1>Viva a Fé no Dia a Dia</h1>
-    <p class="intro">A vida cristã se constrói com hábitos. Separamos um e-book para te ajudar a criar disciplinas espirituais que realmente funcionam.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">E-book: Hábitos do Discípulo — 30 Dias de Disciplina Espiritual</div>
-      <div class="produto-desc">Um programa de 30 dias com desafios práticos, reflexões bíblicas e exercícios espirituais para transformar sua rotina com Deus.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-
-  {% else %}
-    <div class="badge-perfil">🎯 Seu Resultado</div>
-    <h1>Encontramos o Conteúdo Ideal Para Você</h1>
-    <p class="intro">Com base nas suas respostas, separamos o melhor treinamento para o seu perfil.</p>
-    <div class="produto-card destaque">
-      <span class="tag popular">⭐ Mais indicado</span>
-      <div class="produto-title">Conteúdo Digital Recomendado</div>
-      <div class="produto-desc">Acesse agora e comece sua transformação.</div>
-      <a href="{{ link_checkout }}" class="btn-cta">Acessar Conteúdo Recomendado →</a>
-    </div>
-  {% endif %}
+  <div class="produto-card">
+    <span class="tag popular">⭐ Mais indicado</span>
+    <div class="produto-title">{{ produto.produto_titulo }}</div>
+    <div class="produto-desc">{{ produto.produto_desc }}</div>
+    <a href="{{ produto.checkout_link }}" class="btn-cta" target="_blank" rel="noopener">Acessar Conteúdo Recomendado →</a>
+  </div>
 
   <div class="garantia">✅ Garantia de 7 dias — Se não gostar, devolvemos 100% do seu dinheiro.</div>
 
