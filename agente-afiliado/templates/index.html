@@ -122,19 +122,7 @@
     .how-step-desc { font-size: 13px; color: #6b7280; line-height: 1.5; max-width: 200px; }
     @media(max-width: 680px) { .how-steps { grid-template-columns: 1fr; gap: 20px; } .how-steps::before { display: none; } }
 
-    /* Logotipos de Autoridade */
-    .authority-strip { background: #f1f5f9; border-radius: 12px; padding: 20px 32px; margin-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 14px; animation: fadeUp 0.5s ease both; }
-    .authority-label { font-size: 12px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; }
-    .authority-logos { display: flex; align-items: center; justify-content: center; gap: 36px; flex-wrap: wrap; }
-    .authority-logo { font-size: 18px; font-weight: 800; color: #b0b8c8; letter-spacing: 1px; transition: all 0.3s; opacity: 0.55; white-space: nowrap; }
-    .authority-logo:hover { opacity: 1; color: #64748b; }
-    .authority-divider { width: 1px; height: 20px; background: #d1d5db; }
-    @media(max-width: 680px) { .authority-logos { gap: 18px; } .authority-logo { font-size: 14px; } .authority-divider { display: none; } }
-
-    .section-label { font-size: 13px; font-weight: 600; color: #4f46e5; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; text-align: center; }
-    .section-title { font-size: 22px; font-weight: 800; color: #1e1b4b; text-align: center; margin-bottom: 28px; }
-
-    /* O que você vai aprender */
+    .cta-final { text-align: center; margin-top: 32px; }
     .learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 32px; }
     .learn-item { display: flex; align-items: flex-start; gap: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 16px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeUp 0.5s ease both; }
     .learn-item:nth-child(1) { animation-delay: 0.1s; }
@@ -149,6 +137,10 @@
     .cta-final { text-align: center; margin-top: 32px; }
     .cta-final .btn { display: inline-flex; animation: none; }
     .cta-sub { font-size: 12px; color: #9ca3af; margin-top: 8px; }
+
+    /* Disclaimer Footer */
+    .disclaimer { margin-top: 32px; padding: 16px 20px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; }
+    .disclaimer p { font-size: 11px; color: #9ca3af; line-height: 1.6; text-align: center; }
 
     /* FAQ Acordeão */
     .faq-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
@@ -219,22 +211,6 @@
       <div class="cat-card"><div class="cat-icon">💪</div><div class="cat-title">Saúde e Bem-estar</div><div class="cat-sub">Emagrecimento e treinos</div></div>
       <div class="cat-card"><div class="cat-icon">✨</div><div class="cat-title">Estética e Beleza</div><div class="cat-sub">Cursos de aparência</div></div>
       <div class="cat-card"><div class="cat-icon">🙏</div><div class="cat-title">Fé e Espiritualidade</div><div class="cat-sub">Crescimento espiritual</div></div>
-    </div>
-
-    <!-- ========== LOGOTIPOS DE AUTORIDADE ========== -->
-    <div class="authority-strip">
-      <div class="authority-label">Como visto em</div>
-      <div class="authority-logos">
-        <span class="authority-logo">EXAME</span>
-        <div class="authority-divider"></div>
-        <span class="authority-logo">Forbes</span>
-        <div class="authority-divider"></div>
-        <span class="authority-logo">Pequenas Empresas</span>
-        <div class="authority-divider"></div>
-        <span class="authority-logo">Época Negócios</span>
-        <div class="authority-divider"></div>
-        <span class="authority-logo">CNN Brasil</span>
-      </div>
     </div>
 
     <!-- ========== COMO FUNCIONA ========== -->
@@ -324,6 +300,10 @@
         </div>
         <div class="faq-answer"><p class="faq-a-text">Sim! Ao adquirir qualquer guia, você ganha acesso à nossa comunidade exclusiva de alunos, onde pode interagir e tirar dúvidas.</p></div>
       </div>
+    </div>
+    <!-- Disclaimer Hotmart/Facebook -->
+    <div class="disclaimer">
+      <p>Este site não faz parte do site do Facebook ou do Facebook Inc. Além disso, este site não é endossado pelo Facebook de forma alguma. FACEBOOK é uma marca comercial do FACEBOOK, Inc. Este produto é comercializado com apoio da Hotmart. A plataforma não faz controle editorial prévio dos produtos comercializados e não avalia a qualidade ou a veracidade das informações divulgadas pelos produtores. É responsabilidade do produtor e do afiliado garantir que o conteúdo esteja em conformidade com a legislação aplicável.</p>
     </div>
   </div>
 
