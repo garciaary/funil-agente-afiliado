@@ -134,47 +134,6 @@
     .section-label { font-size: 13px; font-weight: 600; color: #4f46e5; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; text-align: center; }
     .section-title { font-size: 22px; font-weight: 800; color: #1e1b4b; text-align: center; margin-bottom: 28px; }
 
-    /* Depoimentos */
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
-    .testimonial-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeUp 0.5s ease both; }
-    .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
-    .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
-    .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
-    .testimonial-card:hover { border-color: #4f46e5; box-shadow: 0 8px 25px rgba(79,70,229,0.1); transform: translateY(-3px); }
-
-    .testimonial-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: white; flex-shrink: 0; }
-    .avatar-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
-    .avatar-blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-    .avatar-purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-    .testimonial-info { display: flex; flex-direction: column; }
-    .testimonial-name { font-size: 14px; font-weight: 700; color: #1e1b4b; }
-    .testimonial-area { font-size: 11px; color: #9ca3af; }
-    .testimonial-stars { color: #fbbf24; font-size: 14px; letter-spacing: 1px; margin-bottom: 8px; }
-    .testimonial-text { font-size: 13px; color: #4b5563; line-height: 1.6; font-style: italic; }
-
-    /* Slider de Resultados */
-    .results-slider { position: relative; overflow: hidden; border-radius: 14px; background: #f8fafc; border: 1px solid #e2e8f0; }
-    .results-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .result-slide { min-width: 100%; padding: 24px; }
-    .result-content { display: flex; align-items: center; gap: 20px; }
-    .result-image { width: 120px; height: 120px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0; }
-    .result-image.health { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
-    .result-image.aesthetics { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); }
-    .result-info { flex: 1; }
-    .result-badge { display: inline-block; background: #dcfce7; color: #15803d; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-bottom: 8px; }
-    .result-badge.aesthetics { background: #f3e8ff; color: #7c3aed; }
-    .result-title { font-size: 16px; font-weight: 700; color: #1e1b4b; margin-bottom: 4px; }
-    .result-desc { font-size: 13px; color: #6b7280; line-height: 1.5; }
-
-    .slider-controls { display: flex; justify-content: center; gap: 8px; padding: 16px 0 8px; }
-    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #d1d5db; cursor: pointer; transition: all 0.3s; }
-    .slider-dot.active { background: #4f46e5; width: 24px; border-radius: 4px; }
-    .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: white; border: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.08); z-index: 2; font-size: 14px; color: #4b5563; }
-    .slider-arrow:hover { border-color: #4f46e5; color: #4f46e5; box-shadow: 0 4px 12px rgba(79,70,229,0.15); }
-    .slider-arrow.prev { left: 12px; }
-    .slider-arrow.next { right: 12px; }
-
     .cta-final { text-align: center; margin-top: 32px; }
     .cta-final .btn { display: inline-flex; animation: none; }
     .cta-sub { font-size: 12px; color: #9ca3af; margin-top: 8px; }
@@ -196,7 +155,7 @@
       .main-grid { grid-template-columns: 1fr; }
       .hero-panel { display: none; }
       .categories { grid-template-columns: repeat(2, 1fr); }
-      .testimonials-grid { grid-template-columns: 1fr; }
+
       .result-content { flex-direction: column; text-align: center; }
       .result-image { width: 80px; height: 80px; font-size: 32px; }
       .slider-arrow { display: none; }
@@ -292,89 +251,6 @@
       </div>
     </div>
 
-    <!-- ========== SEÇÃO: PROVA SOCIAL ========== -->
-    <div class="section-divider"></div>
-
-    <div class="section-label">Prova Social</div>
-    <div class="section-title">O que nossos alunos dizem</div>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <div class="testimonial-avatar avatar-green"><img src="https://i.pravatar.cc/88?img=32" alt="Mariana" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"/></div>
-          <div class="testimonial-info">
-            <div class="testimonial-name">Mariana S.</div>
-            <div class="testimonial-area">Saúde e Bem-estar</div>
-          </div>
-        </div>
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"Perdi 8kg em 2 meses seguindo o método. Não achei que ia funcionar, mas as receitas são incríveis e fáceis de fazer. Recomendo demais!"</div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <div class="testimonial-avatar avatar-blue"><img src="https://i.pravatar.cc/88?img=11" alt="Rafael" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"/></div>
-          <div class="testimonial-info">
-            <div class="testimonial-name">Rafael O.</div>
-            <div class="testimonial-area">Vida Profissional</div>
-          </div>
-        </div>
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"Comecei a usar IA no meu trabalho e minha produtividade triplicou. O guia é direto ao ponto, sem enrolação. Valeu cada centavo."</div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <div class="testimonial-avatar avatar-purple"><img src="https://i.pravatar.cc/88?img=5" alt="Juliana" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"/></div>
-          <div class="testimonial-info">
-            <div class="testimonial-name">Juliana M.</div>
-            <div class="testimonial-area">Estética e Beleza</div>
-          </div>
-        </div>
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"Fiz o curso de micropigmentação e já estou atendendo clientes. O conteúdo é muito completo e o certificado fez toda diferença."</div>
-      </div>
-    </div>
-
-    <!-- Slider de Resultados -->
-    <div class="results-slider" id="resultsSlider">
-      <button class="slider-arrow prev" onclick="moveSlide(-1)">‹</button>
-      <button class="slider-arrow next" onclick="moveSlide(1)">›</button>
-      <div class="results-track" id="resultsTrack">
-        <div class="result-slide">
-          <div class="result-content">
-            <div class="result-image health">⚖️</div>
-            <div class="result-info">
-              <span class="result-badge">Resultado comprovado</span>
-              <div class="result-title">Mariana perdeu 8kg em 60 dias</div>
-              <div class="result-desc">Com o Método Emagrecer de Vez, ela reeducou sua alimentação sem passar fome e agora mantém o peso há 4 meses.</div>
-            </div>
-          </div>
-        </div>
-        <div class="result-slide">
-          <div class="result-content">
-            <div class="result-image aesthetics">💆</div>
-            <div class="result-info">
-              <span class="result-badge aesthetics">Transformação real</span>
-              <div class="result-title">Juliana faturou R$3.200 no primeiro mês</div>
-              <div class="result-desc">Após o curso de micropigmentação, ela começou a atender em casa e já tem agenda lotada para o próximo mês.</div>
-            </div>
-          </div>
-        </div>
-        <div class="result-slide">
-          <div class="result-content">
-            <div class="result-image health">💪</div>
-            <div class="result-info">
-              <span class="result-badge">Evolução real</span>
-              <div class="result-title">Carlos transformou seu corpo em 21 dias</div>
-              <div class="result-desc">Treinando apenas em casa com o programa de 21 dias, ele ganhou massa muscular e perdeu barriga sem academia.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slider-controls" id="sliderDots"></div>
-    </div>
-
     <!-- CTA Final -->
     <div class="cta-final">
       <a href="/quiz" class="btn btn-green btn-cta">🚀 Descubra seu curso ideal agora <span class="btn-arrow">→</span></a>
@@ -426,38 +302,6 @@
   </div>
 
   <script>
-    var currentSlide = 0;
-    var totalSlides = 3;
-    var track = document.getElementById('resultsTrack');
-    var dotsContainer = document.getElementById('sliderDots');
-
-    // Criar dots
-    for (var i = 0; i < totalSlides; i++) {
-      var dot = document.createElement('div');
-      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-      dot.onclick = (function(index) { return function() { goToSlide(index); }; })(i);
-      dotsContainer.appendChild(dot);
-    }
-
-    function goToSlide(index) {
-      currentSlide = index;
-      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-      var dots = dotsContainer.querySelectorAll('.slider-dot');
-      for (var i = 0; i < dots.length; i++) {
-        dots[i].classList.toggle('active', i === currentSlide);
-      }
-    }
-
-    function moveSlide(dir) {
-      var next = currentSlide + dir;
-      if (next < 0) next = totalSlides - 1;
-      if (next >= totalSlides) next = 0;
-      goToSlide(next);
-    }
-
-    // Auto-slide a cada 4 segundos
-    setInterval(function() { moveSlide(1); }, 4000);
-
     // FAQ Acordeão
     function toggleFaq(el) {
       var item = el.parentElement;
