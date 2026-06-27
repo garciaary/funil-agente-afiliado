@@ -134,6 +134,18 @@
     .section-label { font-size: 13px; font-weight: 600; color: #4f46e5; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; text-align: center; }
     .section-title { font-size: 22px; font-weight: 800; color: #1e1b4b; text-align: center; margin-bottom: 28px; }
 
+    /* O que você vai aprender */
+    .learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 32px; }
+    .learn-item { display: flex; align-items: flex-start; gap: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 16px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeUp 0.5s ease both; }
+    .learn-item:nth-child(1) { animation-delay: 0.1s; }
+    .learn-item:nth-child(2) { animation-delay: 0.15s; }
+    .learn-item:nth-child(3) { animation-delay: 0.2s; }
+    .learn-item:nth-child(4) { animation-delay: 0.25s; }
+    .learn-item:nth-child(5) { animation-delay: 0.3s; }
+    .learn-item:nth-child(6) { animation-delay: 0.35s; }
+    .learn-item:hover { border-color: #4f46e5; box-shadow: 0 4px 16px rgba(79,70,229,0.1); transform: translateY(-2px); }
+    .learn-check { width: 32px; height: 32px; border-radius: 8px; background: #dcfce7; color: #16a34a; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+    .learn-text { font-size: 13px; font-weight: 600; color: #1e1b4b; line-height: 1.5; padding-top: 4px; }
     .cta-final { text-align: center; margin-top: 32px; }
     .cta-final .btn { display: inline-flex; animation: none; }
     .cta-sub { font-size: 12px; color: #9ca3af; margin-top: 8px; }
@@ -249,6 +261,20 @@
         <div class="how-step-title">Aplicação</div>
         <div class="how-step-desc">Comece a aplicar e colha os primeiros resultados.</div>
       </div>
+    </div>
+
+    <!-- ========== O QUE VOCÊ VAI APRENDER ========== -->
+    <div class="section-divider"></div>
+    <div class="section-label">Conteúdo</div>
+    <div class="section-title">O que você vai aprender</div>
+
+    <div class="learn-grid">
+      <div class="learn-item"><div class="learn-check">✓</div><div class="learn-text">Estratégias comprovadas para atingir seus objetivos pessoais e profissionais</div></div>
+      <div class="learn-item"><div class="learn-check">✓</div><div class="learn-text">Métodos passo a passo que qualquer pessoa pode aplicar do dia para a noite</div></div>
+      <div class="learn-item"><div class="learn-check">✓</div><div class="learn-text">Técnicas avançadas de produtividade e organização para maximizar resultados</div></div>
+      <div class="learn-item"><div class="learn-check">✓</div><div class="learn-text">Como evitar os erros mais comuns que travam a maioria das pessoas</div></div>
+      <div class="learn-item"><div class="learn-check">✓</div><div class="learn-text">Planos de ação prontos para colocar em prática imediatamente</div></div>
+      <div class="learn-item"><div class="learn-check">✓</div><div class="learn-text">Acesso vitalício ao conteúdo com atualizações gratuitas</div></div>
     </div>
 
     <!-- CTA Final -->
