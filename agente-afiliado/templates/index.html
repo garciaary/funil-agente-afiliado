@@ -59,6 +59,18 @@
     .btn-green { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
     .btn-blue  { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
     .btn-purple{ background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: white; }
+    .btn-green:hover { background: linear-gradient(135deg, #34d46a, #22c55e); box-shadow: 0 8px 30px rgba(34,197,94,0.4); }
+    .btn-blue:hover { background: linear-gradient(135deg, #60a5fa, #3b82f6); box-shadow: 0 8px 30px rgba(59,130,246,0.4); }
+    .btn-purple:hover { background: linear-gradient(135deg, #a78bfa, #8b5cf6); box-shadow: 0 8px 30px rgba(139,92,246,0.4); }
+    .btn .btn-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); font-size: 14px; }
+    .btn:hover .btn-arrow { transform: translateX(4px); }
+    .btn-cta { position: relative; overflow: hidden; }
+    .btn-cta::before { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transform: skewX(-15deg); animation: btnShine 3s ease-in-out infinite; z-index: 1; pointer-events: none; }
+    @keyframes btnShine {
+      0%, 100% { left: -100%; }
+      50% { left: 120%; }
+    }
+    .btn-cta:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 35px rgba(34,197,94,0.5); }
 
     .hero-panel { background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 16px; padding: 32px; color: white; animation: fadeUp 0.6s ease 0.3s both; position: relative; overflow: hidden; }
     .hero-panel::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: shimmer 3s ease infinite; }
@@ -199,10 +211,10 @@
         </div>
 
         <div class="btn-group">
-          <a href="/quiz?categoria=profissional" class="btn btn-green">💼 Vida Profissional</a>
-          <a href="/quiz?categoria=saude" class="btn btn-blue">💪 Saúde e Bem-estar</a>
-          <a href="/quiz?categoria=estetica" class="btn btn-purple">✨ Estética e Beleza</a>
-          <a href="/quiz?categoria=espiritualidade" class="btn btn-purple">🙏 Fé e Espiritualidade</a>
+          <a href="/quiz?categoria=profissional" class="btn btn-green">💼 Vida Profissional <span class="btn-arrow">→</span></a>
+          <a href="/quiz?categoria=saude" class="btn btn-blue">💪 Saúde e Bem-estar <span class="btn-arrow">→</span></a>
+          <a href="/quiz?categoria=estetica" class="btn btn-purple">✨ Estética e Beleza <span class="btn-arrow">→</span></a>
+          <a href="/quiz?categoria=espiritualidade" class="btn btn-purple">🙏 Fé e Espiritualidade <span class="btn-arrow">→</span></a>
         </div>
       </div>
 
@@ -352,7 +364,7 @@
 
     <!-- CTA Final -->
     <div class="cta-final">
-      <a href="/quiz" class="btn btn-green">🚀 Descubra seu curso ideal agora</a>
+      <a href="/quiz" class="btn btn-green btn-cta">🚀 Descubra seu curso ideal agora <span class="btn-arrow">→</span></a>
       <div class="cta-sub">Leva menos de 1 minuto • 100% gratuito</div>
     </div>
   </div>
