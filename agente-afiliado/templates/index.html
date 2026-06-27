@@ -9,50 +9,87 @@
   <meta property="og:type" content="website"/>
   <meta name="theme-color" content="#4f46e5"/>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <title>Evolução Digital — Cursos e Guias</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', sans-serif; background: #f0f4ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    body { font-family: 'Inter', sans-serif; background: #f0f4ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
 
-    .card { background: white; border-radius: 20px; padding: 48px; max-width: 900px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,0.10); }
+    .card { background: white; border-radius: 20px; padding: 48px; max-width: 900px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,0.10); animation: fadeUp 0.6s ease; }
 
-    .badge { display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: #15803d; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    h1 { font-size: 36px; font-weight: 700; color: #1e1b4b; line-height: 1.25; margin-bottom: 14px; }
-    h1 span { color: #4f46e5; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: #15803d; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; animation: fadeUp 0.6s ease 0.1s both; }
 
-    .subtitle { font-size: 16px; color: #6b7280; line-height: 1.7; margin-bottom: 28px; max-width: 520px; }
+    h1 { font-size: 36px; font-weight: 800; color: #1e1b4b; line-height: 1.25; margin-bottom: 14px; animation: fadeUp 0.6s ease 0.15s both; }
+    h1 span { color: #4f46e5; background: linear-gradient(135deg, #4f46e5, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-    .trust-bar { display: flex; gap: 28px; margin-bottom: 32px; flex-wrap: wrap; }
-    .trust-item { display: flex; flex-direction: column; }
-    .trust-num { font-size: 22px; font-weight: 700; color: #4f46e5; }
+    .subtitle { font-size: 16px; color: #6b7280; line-height: 1.7; margin-bottom: 28px; max-width: 520px; animation: fadeUp 0.6s ease 0.2s both; }
+
+    .trust-bar { display: flex; gap: 28px; margin-bottom: 32px; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.25s both; }
+    .trust-item { display: flex; flex-direction: column; transition: transform 0.2s; }
+    .trust-item:hover { transform: translateY(-2px); }
+    .trust-num { font-size: 22px; font-weight: 800; color: #4f46e5; }
     .trust-label { font-size: 12px; color: #9ca3af; margin-top: 2px; }
     .trust-divider { width: 1px; background: #e5e7eb; }
 
     .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
 
     .btn-group { display: flex; flex-direction: column; gap: 12px; }
-    .btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 24px; border-radius: 12px; font-size: 15px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: transform 0.15s, opacity 0.15s; }
-    .btn:hover { transform: translateY(-2px); opacity: 0.92; }
+    .btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 24px; border-radius: 12px; font-size: 15px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+    .btn::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255,255,255,0.25); transform: translate(-50%, -50%); transition: width 0.4s, height 0.4s; }
+    .btn:active::after { width: 300px; height: 300px; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+    .btn:active { transform: translateY(-1px); }
+    .btn:nth-child(1) { animation: slideIn 0.5s ease 0.3s both; }
+    .btn:nth-child(2) { animation: slideIn 0.5s ease 0.4s both; }
+    .btn:nth-child(3) { animation: slideIn 0.5s ease 0.5s both; }
+    .btn:nth-child(4) { animation: slideIn 0.5s ease 0.6s both; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
     .btn-green { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
     .btn-blue  { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
     .btn-purple{ background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: white; }
 
-    .hero-panel { background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 16px; padding: 32px; color: white; }
+    .hero-panel { background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 16px; padding: 32px; color: white; animation: fadeUp 0.6s ease 0.3s both; position: relative; overflow: hidden; }
+    .hero-panel::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: shimmer 3s ease infinite; }
+    @keyframes shimmer {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-10%, 10%); }
+    }
     .hero-panel h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
     .hero-panel p  { font-size: 14px; opacity: 0.88; line-height: 1.7; margin-bottom: 20px; }
-    .stars { color: #fbbf24; font-size: 18px; letter-spacing: 2px; }
+    .stars { color: #fbbf24; font-size: 18px; letter-spacing: 2px; animation: pulse 2s ease infinite; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
     .rating-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
     .rating-text { font-size: 13px; opacity: 0.9; }
     .avatars { display: flex; margin-top: 18px; align-items: center; }
-    .av { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid white; margin-left: -8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .av { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.3); border: 2px solid white; margin-left: -8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; transition: transform 0.2s; }
+    .av:hover { transform: scale(1.15); z-index: 1; }
     .av:first-child { margin-left: 0; }
     .av-text { font-size: 13px; opacity: 0.88; margin-left: 12px; }
 
     .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
-    .cat-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 14px; text-align: center; transition: border-color 0.2s, box-shadow 0.2s; }
-    .cat-card:hover { border-color: #4f46e5; box-shadow: 0 4px 16px rgba(79,70,229,0.12); }
-    .cat-icon { font-size: 28px; margin-bottom: 8px; }
+    .cat-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 14px; text-align: center; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeUp 0.5s ease both; }
+    .cat-card:nth-child(1) { animation-delay: 0.4s; }
+    .cat-card:nth-child(2) { animation-delay: 0.5s; }
+    .cat-card:nth-child(3) { animation-delay: 0.6s; }
+    .cat-card:nth-child(4) { animation-delay: 0.7s; }
+    .cat-card:hover { border-color: #4f46e5; box-shadow: 0 8px 25px rgba(79,70,229,0.15); transform: translateY(-4px); }
+    .cat-icon { font-size: 28px; margin-bottom: 8px; transition: transform 0.3s; }
+    .cat-card:hover .cat-icon { transform: scale(1.2) rotate(-5deg); }
     .cat-title { font-size: 13px; font-weight: 700; color: #1e1b4b; margin-bottom: 4px; }
     .cat-sub   { font-size: 11px; color: #9ca3af; }
 
