@@ -15,7 +15,7 @@
   <title>Evolução Digital — Cursos e Guias</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #f0f4ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(180deg, #e8eeff 0%, #f5f7ff 40%, #ffffff 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
 
     .card { background: white; border-radius: 20px; padding: 48px; max-width: 900px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,0.10); animation: fadeUp 0.6s ease; }
 
@@ -40,7 +40,7 @@
 
     .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
 
-    .btn-group { display: flex; flex-direction: column; gap: 12px; }
+    .btn-group { display: flex; flex-direction: column; gap: 16px; }
     .btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 24px; border-radius: 12px; font-size: 15px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
     .btn::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255,255,255,0.25); transform: translate(-50%, -50%); transition: width 0.4s, height 0.4s; }
     .btn:active::after { width: 300px; height: 300px; }
@@ -93,8 +93,8 @@
     .av:first-child { margin-left: 0; }
     .av-text { font-size: 13px; opacity: 0.88; margin-left: 12px; }
 
-    .categories { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 32px; }
-    .cat-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 14px; text-align: center; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeUp 0.5s ease both; }
+    .categories { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
+    .cat-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 14px; text-align: center; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeUp 0.5s ease both; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
     .cat-card:nth-child(1) { animation-delay: 0.4s; }
     .cat-card:nth-child(2) { animation-delay: 0.5s; }
     .cat-card:nth-child(3) { animation-delay: 0.6s; }
